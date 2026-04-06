@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lucas Cruz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ff4500;
+      --text: #000;
+      --mono: 'IBM Plex Mono', monospace;
+      --sans: 'IBM Plex Sans', sans-serif;
+    }
+
+    html { font-size: 15px; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── HOME PAGE ── */
+    #home {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 0.65rem 1rem 0.4rem 0.9rem;
+    }
+
+    .home-spacer { flex: 1; }
+
+  #home {
+    justify-content: center;
+  }
+
+    .home-nav {
+      display: grid;
+      grid-template-columns: 4fr 8fr;
+      gap: 1rem;
+      align-items: baseline;
+    }
+
+    .home-nav .name {
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .home-nav .links {
+      text-align: right;
+      font-size: 0.82rem;
+    }
+
+    /* ── INFO PAGE ── */
+    #info {
+      display: none;
+      padding: 0rem 1rem 2rem 0.9rem;
+      max-width: 100%;
+    }
+
+    .section { margin-bottom: 0; }
+
+    /* two-col grid helpers */
+    .col-grid {
+      display: grid;
+      gap: 0 0.5rem;
+    }
+    .col-5-7 { grid-template-columns: 5fr 7fr; }
+    .col-5-1-6 { grid-template-columns: 5fr 1fr 6fr; }
+
+    hr {
+      border: none;
+      border-top: 1px solid #000;
+      margin: 0.3rem 0;
+    }
+
+    /* Row-based table for aligned sections */
+    .entry-table {
+      display: grid;
+      grid-template-columns: 1fr 7rem 6fr;
+      font-size: 0.78rem;
+      line-height: 1.6;
+    }
+    .entry-table .col-label {
+      grid-column: 1;
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      padding-top: 0.4rem;
+      align-self: start;
+    }
+    .entry-table .row-hr {
+      grid-column: 2 / -1;
+      border: none;
+      border-top: 1px solid #000;
+      margin: 0.3rem 0;
+    }
+    .entry-table .row-date {
+      text-align: right;
+      padding-right: 0.8rem;
+      align-self: start;
+      white-space: nowrap;
+    }
+    .entry-table .row-entry {
+      align-self: start;
+    }
+    .entry-table i { font-style: italic; }
+    .entry-table .col-empty { grid-column: 1; }
+
+    .contact-col {
+      font-size: 0.78rem;
+      line-height: 1.8;
+    }
+
+    .bio-col {
+      font-size: 0.78rem;
+      line-height: 1.7;
+    }
+
+    .spacer-row { padding: 0.6rem 0; }
+
+    /* ── NAV BAR (info page) ── */
+    #info-topbar {
+      display: none;
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      padding: 0.65rem 1rem 0.4rem 0.9rem;
+      z-index: 10;
+    }
+
+    #info-topbar .home-nav {
+      display: grid;
+      grid-template-columns: 4fr 8fr;
+      gap: 1rem;
+      align-items: baseline;
+    }
+
+    /* shared small */
+    .small { font-size: 0.78rem; }
+
+    /* mobile */
+    @media (max-width: 640px) {
+      .col-5-7 { grid-template-columns: 1fr; }
+      .entry-table { grid-template-columns: 1fr; }
+      .entry-table .col-empty { display: none; }
+      .entry-table .row-date { text-align: left; font-weight: 500; margin-top: 0.3rem; }
+      .entry-table .row-hr { margin: 0.4rem 0; }
+      .home-nav { grid-template-columns: 1fr; }
+      .home-nav .links { text-align: left; margin-top: 0.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     HOME PAGE
+══════════════════════════════════════ -->
+<div id="home">
+  <nav class="home-nav">
+    <div class="name">LUCAS CRUZ</div>
+    <div class="links">
+      <a href="#" onclick="showInfo(); return false;"><span style="font-size:0.82rem">[1]</span> INFO, PAPERS, TALKS, ETC</a>
+      &nbsp;
+      <span style="font-size:0.8rem">[<a href="https://docs.google.com/document/d/1Vppw4yRmgoPscLUqnhfaCMJ1HGHpKlJUTNuKsOISm0I/edit?usp=sharing" target="_blank">2]</a></span>
+      <a href="https://docs.google.com/document/d/1Vppw4yRmgoPscLUqnhfaCMJ1HGHpKlJUTNuKsOISm0I/edit?usp=sharing" target="_blank"> CV</a>
+    </div>
+  </nav>
+</div>
+
+<!-- ══════════════════════════════════════
+     INFO PAGE TOP BAR
+══════════════════════════════════════ -->
+<div id="info-topbar">
+  <div class="home-nav">
+    <div class="name"><a href="#" onclick="showHome(); return false;">LUCAS CRUZ</a></div>
+    <div class="links">
+      <a href="#" onclick="showInfo(); return false;"><span style="font-size:0.82rem">[1]</span> INFO, PAPERS, TALKS, ETC</a>
+      &nbsp;
+      <span style="font-size:0.8rem">[<a href="https://docs.google.com/document/d/1Vppw4yRmgoPscLUqnhfaCMJ1HGHpKlJUTNuKsOISm0I/edit?usp=sharing" target="_blank">2]</a></span>
+      <a href="https://docs.google.com/document/d/1Vppw4yRmgoPscLUqnhfaCMJ1HGHpKlJUTNuKsOISm0I/edit?usp=sharing" target="_blank"> CV</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     INFO PAGE
+══════════════════════════════════════ -->
+<div id="info">
+
+  <!-- CONTACT + BIO -->
+  <div class="col-grid col-5-7 section">
+    <div class="contact-col">
+      <hr>CONTACT<br><br>
+      Lucas Cruz<br>
+      Brain, Language, and Bilingualism Lab<br>
+      University of Cambridge<br>
+      ldac2 at cam dot ac dot uk<br>
+      <a href="https://www.linkedin.com" target="_blank">LinkedIn ↗</a>
+    </div>
+    <div class="bio-col">
+      <hr>INFO<br><br>
+      I am a PhD candidate at the University of Cambridge, where I study how language is represented in the brain, particularly in bilingual individuals. Relatedly, my interests also focus on how language processing interacts with broader cognitive systems, including memory and attention. I completed master's degrees in Brazil and Italy with top honours, and have conducted research across institutions in Spain, the Netherlands, and the UK, where I have explored topics in semantic processing, prediction in bilingual comprehension, and cognitive effects of bilingualism.
+    </div>
+  </div>
+
+  <div class="spacer-row"></div>
+
+  <!-- PAPERS -->
+  <hr>
+  <div class="entry-table">
+    <div class="col-label">PAPERS</div>
+    <div class="row-date">In preparation</div>
+    <div class="row-entry">Cruz, L. et al. Assessing cognition in bilinguals and monolinguals with mild cognitive impairment.</div>
+    <hr class="row-hr">
+    <div class="col-empty"></div>
+    <div class="row-date">In press</div>
+    <div class="row-entry">Cruz, L., Melloni, C., Ciriaco, L.. Illusions of plausibility: the case of semantic attraction. <i>Journal of Psycholinguistic Research</i>.</div>
+    <hr class="row-hr">
+    <div class="col-empty"></div>
+    <div class="row-date">2025</div>
+    <div class="row-entry">Tagliani, M., Cruz, L., Redolfi, M., Shirokorad, N., Canzi, M., Melloni, C., Vender, M. L2 learners take more time to catch the rhyme: An eye-tracking study on predictive processing. <i>International Journal of Bilingualism</i>.</div>
+    <hr class="row-hr">
+    <div class="col-empty"></div>
+    <div class="row-date">2024</div>
+    <div class="row-entry">Cruz, L.D.A. Semantic attraction in Italian: an experimental study on some underlying functional factors. <i>Master's thesis.</i></div>
+  </div>
+
+  <div class="spacer-row"></div>
+
+  <!-- TALKS -->
+  <hr>
+  <div class="entry-table">
+    <div class="col-label">TALKS</div>
+    <div class="row-date">2025</div>
+    <div class="row-entry">15th International Symposium on Bilingualism: 'Assessing the effects of bilingualism on cognition in mild cognitive impairment: a comparison of age of onset and verbal fluency between bilinguals and monolinguals' (with Laura Casas, Immaculada Rico, Nuria Rojo, Jordi Gascón, Jaume Campdelacreu, Ramón Reñé, Xim Cerda-Company &amp; Claudia Peñaloza)</div>
+    <hr class="row-hr">
+    <div class="col-empty"></div>
+    <div class="row-date">2025</div>
+    <div class="row-entry">ConSOLE 33: 'Illusions of plausibility are modulated by feature sharing and memory overload: the case of semantic attraction'</div>
+    <hr class="row-hr">
+    <div class="col-empty"></div>
+    <div class="row-date">2024</div>
+    <div class="row-entry">IX Simpósio Mundial de Estudos de Língua Portuguesa: 'A construção "cortei o cabelo" no PB' (with Isabella Maciel)</div>
+    <hr class="row-hr">
+    <div class="col-empty"></div>
+    <div class="row-date">2024</div>
+    <div class="row-entry">VII Simpósio Internacional de Linguística Funcional: 'Semantic attraction in Brazilian Portuguese and Italian: an experimental study on some underlying functional factors' (with Isabella Maciel)</div>
+    <hr class="row-hr">
+    <div class="col-empty"></div>
+    <div class="row-date">2024</div>
+    <div class="row-entry">VII Simpósio Internacional de Linguística Funcional: 'A construção "cortei o cabelo" no PB' (with Isabella Maciel)</div>
+    <hr class="row-hr">
+    <div class="col-empty"></div>
+    <div class="row-date">2023</div>
+    <div class="row-entry">Grenoble Winter School in Cognitive Linguistics: 'Agreement attraction in Brazilian Portuguese and Italian: an investigation of syntactic and semantic factors on agreement processing'</div>
+    <hr class="row-hr">
+    <div class="col-empty"></div>
+    <div class="row-date">2022</div>
+    <div class="row-entry">9th Annual Scarborough Undergraduate Linguistics: 'Code-switching processing in early and late bilinguals: an investigation using the maze task'</div>
+    <hr class="row-hr">
+    <div class="col-empty"></div>
+    <div class="row-date">2022</div>
+    <div class="row-entry">2nd Linguistics Summer School in Bolivia: 'Code-switching processing in early and late bilinguals: an investigation using the maze task'</div>
+    <hr class="row-hr">
+    <div class="col-empty"></div>
+    <div class="row-date">2021</div>
+    <div class="row-entry">1º SEFOPLI: 'A aplicabilidade das diretrizes da BNCC no contexto de ensino médio: um estudo de caso numa escola pública em Recife'</div>
+    <hr class="row-hr">
+    <div class="col-empty"></div>
+    <div class="row-date">2020</div>
+    <div class="row-entry">68th StuTS: 'Multimodal meaning-making in social distancing times: an analysis of the videoconferencing tool Zoom as a digital classroom' (with Camila Medeiros)</div>
+  </div>
+
+  <div class="spacer-row"></div>
+
+  <!-- INVITED TALKS -->
+  <hr>
+  <div class="entry-table">
+    <div class="col-label">INVITED TALKS</div>
+    <div class="row-date">2024</div>
+    <div class="row-entry">1st FURIGLO: 'Semantic attraction in Brazilian Portuguese and Italian: an experimental study on some underlying functional factors'</div>
+    <hr class="row-hr">
+    <div class="col-empty"></div>
+    <div class="row-date">2020</div>
+    <div class="row-entry">IVEC Conference: 'Student voices: Visions of the Future through Past and Present Insights'</div>
+  </div>
+
+  <div class="spacer-row"></div>
+
+  <!-- POSTERS -->
+  <hr>
+  <div class="entry-table">
+    <div class="col-label">POSTERS</div>
+    <div class="row-date">Forthcoming</div>
+    <div class="row-entry">Bilingualism Matters Conference: 'Proficiency Shapes Prediction: Semantic and Phonological Cue Integration in L1 and L2 Sentence Processing'</div>
+    <hr class="row-hr">
+    <div class="col-empty"></div>
+    <div class="row-date">2022</div>
+    <div class="row-entry">The International Max Planck Research School: 'Is AoA a relevant variable to account for code-switching processing?'</div>
+    <hr class="row-hr">
+    <div class="col-empty"></div>
+    <div class="row-date">2020</div>
+    <div class="row-entry">32ª Semana de Letras da UNESP: 'Fazer-sentido multimodal: uma análise da plataforma de videoconferência Zoom' (with Camila Medeiros)</div>
+  </div>
+
+  <div class="spacer-row"></div><br>
+</div>
+
+<script>
+  function showInfo() {
+    document.getElementById('home').style.display = 'none';
+    document.getElementById('info').style.display = 'block';
+    document.getElementById('info-topbar').style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+  function showHome() {
+    document.getElementById('home').style.display = 'flex';
+    document.getElementById('info').style.display = 'none';
+    document.getElementById('info-topbar').style.display = 'none';
+    window.scrollTo(0, 0);
+  }
+</script>
+</body>
+</html>
